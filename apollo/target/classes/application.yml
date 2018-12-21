@@ -1,0 +1,6 @@
+server:
+  port: 9091
+app:
+  id: spring-boot-encrypt
+apollo:
+  meta: http://localhost:8080
