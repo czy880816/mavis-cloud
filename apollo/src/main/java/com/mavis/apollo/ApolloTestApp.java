@@ -1,6 +1,8 @@
 package com.mavis.apollo;
 
+import com.ctrip.framework.apollo.Config;
 import com.ctrip.framework.apollo.model.ConfigChangeEvent;
+import com.ctrip.framework.apollo.spring.annotation.ApolloConfig;
 import com.ctrip.framework.apollo.spring.annotation.ApolloConfigChangeListener;
 import com.ctrip.framework.apollo.spring.annotation.EnableApolloConfig;
 import com.mavis.apollo.config.TestConfig;
@@ -26,6 +28,9 @@ public class ApolloTestApp {
     @Autowired
     private TestConfig config;
 
+    @ApolloConfig
+    private Config cg;
+
     @GetMapping("/getConfig")
     public Map<String, Object> getConfig() {
         Map<String, Object> res = new HashMap<>();
@@ -43,5 +48,6 @@ public class ApolloTestApp {
     private void anotherOnChange(ConfigChangeEvent changeEvent) {
         //do something
         System.out.println(changeEvent.changedKeys());
+        System.out.println(cg.getPropertyNames());
     }
 }

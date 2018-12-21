@@ -4,3 +4,5 @@ app:
   id: spring-boot-encrypt
 apollo:
   meta: http://localhost:8080
+  bootstrap:
+    enabled: true
