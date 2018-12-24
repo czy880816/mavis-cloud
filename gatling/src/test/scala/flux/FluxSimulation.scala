@@ -14,7 +14,7 @@ class FluxSimulation extends Simulation{
   val sim_users = System.getProperty("sim.users").toInt*/
 
   val baseUrl = "http://127.0.0.1:8080/"
-  val testPath = "hello/100"
+  val testPath = "eureka/apps"
   val sim_users = 1000
 
   val httpConf = http.baseUrl(baseUrl)

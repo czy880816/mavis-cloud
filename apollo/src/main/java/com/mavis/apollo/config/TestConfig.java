@@ -1,8 +1,13 @@
 package com.mavis.apollo.config;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
+import org.springframework.stereotype.Component;
 
-
+@RefreshScope
+@ConfigurationProperties(prefix = "test")
+@Component("testConfig")
 public class TestConfig {
 
     @Value("${test.input}")

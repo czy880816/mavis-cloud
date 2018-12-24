@@ -23,6 +23,7 @@
         <module>apollo</module>
         <module>sentinel</module>
         <module>microservice-dependency</module>
+        <module>feign-ribbon</module>
     </modules>
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>

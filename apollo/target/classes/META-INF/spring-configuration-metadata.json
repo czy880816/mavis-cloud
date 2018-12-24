@@ -1,0 +1,22 @@
+{
+  "hints": [],
+  "groups": [
+    {
+      "sourceType": "com.mavis.apollo.config.TestConfig",
+      "name": "test",
+      "type": "com.mavis.apollo.config.TestConfig"
+    }
+  ],
+  "properties": [
+    {
+      "sourceType": "com.mavis.apollo.config.TestConfig",
+      "name": "test.input",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.mavis.apollo.config.TestConfig",
+      "name": "test.input1",
+      "type": "java.lang.String"
+    }
+  ]
+}

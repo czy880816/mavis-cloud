@@ -10,7 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
+import org.springframework.cloud.context.scope.refresh.RefreshScope;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,7 +21,9 @@ import java.util.Map;
 
 @SpringBootApplication
 @EnableApolloConfig
+@Configuration
 @RestController
+//@EnableConfigurationProperties(TestConfig.class)
 public class ApolloTestApp {
     public static void main(String[] args) {
         SpringApplication.run(ApolloTestApp.class, args);
@@ -31,23 +35,54 @@ public class ApolloTestApp {
     @ApolloConfig
     private Config cg;
 
+    @Autowired
+    private ApplicationContext context;
+
+    @Value("${jasypt.encryptor.password}")
+    private volatile String pwd;
+
+    @Autowired
+    private RefreshScope scope;
+
     @GetMapping("/getConfig")
     public Map<String, Object> getConfig() {
         Map<String, Object> res = new HashMap<>();
+        ApolloTestApp apolloTestApp = context.getBean(ApolloTestApp.class);
         res.put("input", config.getInput());
         res.put("input1", config.getInput1());
+        res.put("pwd",cg.getProperty("jasypt.encryptor.password","default"));
+        res.put("pwd1",pwd);
+        res.put("pwd2",apolloTestApp.getPwd());
         return res;
     }
 
-    @Bean
+    /*@Bean
     public TestConfig testConfig() {
         return new TestConfig();
-    }
+    }*/
 
     @ApolloConfigChangeListener("application")
     private void anotherOnChange(ConfigChangeEvent changeEvent) {
-        //do something
         System.out.println(changeEvent.changedKeys());
-        System.out.println(cg.getPropertyNames());
+        boolean redisCacheKeysChanged = false;
+        for (String changedKey : changeEvent.changedKeys()) {
+            if (changedKey.startsWith("test")) {
+                redisCacheKeysChanged = true;
+                break;
+            }
+        }
+        if (!redisCacheKeysChanged) {
+            return;
+        }
+        //scope.refreshAll();
+        scope.refresh("testConfig");
+    }
+
+    public String getPwd() {
+        return pwd;
+    }
+
+    public void setPwd(String pwd) {
+        this.pwd = pwd;
     }
 }
