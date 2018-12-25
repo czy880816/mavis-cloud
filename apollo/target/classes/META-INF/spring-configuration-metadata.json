@@ -2,21 +2,21 @@
   "hints": [],
   "groups": [
     {
-      "sourceType": "com.mavis.apollo.config.TestConfig",
-      "name": "test",
-      "type": "com.mavis.apollo.config.TestConfig"
+      "sourceType": "com.mavis.apollo.demo.spring.springBootDemo.config.SampleRedisConfig",
+      "name": "redis.cache",
+      "type": "com.mavis.apollo.demo.spring.springBootDemo.config.SampleRedisConfig"
     }
   ],
   "properties": [
     {
-      "sourceType": "com.mavis.apollo.config.TestConfig",
-      "name": "test.input",
-      "type": "java.lang.String"
+      "sourceType": "com.mavis.apollo.demo.spring.springBootDemo.config.SampleRedisConfig",
+      "name": "redis.cache.some-list",
+      "type": "java.util.List<java.lang.String>"
     },
     {
-      "sourceType": "com.mavis.apollo.config.TestConfig",
-      "name": "test.input1",
-      "type": "java.lang.String"
+      "sourceType": "com.mavis.apollo.demo.spring.springBootDemo.config.SampleRedisConfig",
+      "name": "redis.cache.some-map",
+      "type": "java.util.Map<java.lang.String,java.lang.String>"
     }
   ]
 }

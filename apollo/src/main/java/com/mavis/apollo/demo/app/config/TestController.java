@@ -1,8 +1,7 @@
-package com.mavis.apollo.config;
+package com.mavis.apollo.demo.app.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
@@ -15,7 +14,7 @@ public class TestController {
     @Autowired
     private TestConfig config;
 
-    @GetMapping("/getOther")
+    //@GetMapping("/getOther")
     public Map<String, Object> getConfig() {
         Map<String, Object> res = new HashMap<>();
         res.put("input", config.getInput());

@@ -59,16 +59,21 @@
             <groupId>com.ctrip.framework.apollo</groupId>
             <artifactId>apollo-client</artifactId>
         </dependency>
-        <!--配置文件加密-->
-        <dependency>
+        <!--todo 配置文件加密,暂不使用，会影响apollo的自动更新功能-->
+        <!--<dependency>
             <groupId>com.github.ulisesbocchio</groupId>
             <artifactId>jasypt-spring-boot-starter</artifactId>
-        </dependency>
+        </dependency>-->
         <!--sentinel客户端及核心库-->
         <!--ribbon-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-ribbon</artifactId>
+        </dependency>
+        <!--feign-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
         </dependency>
         <!--actuator端点监控支持-->
         <dependency>

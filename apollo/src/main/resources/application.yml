@@ -3,6 +3,7 @@ server:
 app:
   id: spring-boot-encrypt
 apollo:
-  meta: http://106.12.25.204:8080
+  meta: http://localhost:8080
   bootstrap:
     enabled: true
+    namespaces: application

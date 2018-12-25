@@ -1,18 +1,16 @@
-package com.mavis.apollo;
+package com.mavis.apollo.demo.app;
 
 import com.ctrip.framework.apollo.Config;
 import com.ctrip.framework.apollo.model.ConfigChangeEvent;
 import com.ctrip.framework.apollo.spring.annotation.ApolloConfig;
 import com.ctrip.framework.apollo.spring.annotation.ApolloConfigChangeListener;
 import com.ctrip.framework.apollo.spring.annotation.EnableApolloConfig;
-import com.mavis.apollo.config.TestConfig;
+import com.mavis.apollo.demo.app.config.TestConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.context.scope.refresh.RefreshScope;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,12 +19,12 @@ import java.util.Map;
 
 @SpringBootApplication
 @EnableApolloConfig
-@Configuration
 @RestController
 //@EnableConfigurationProperties(TestConfig.class)
 public class ApolloTestApp {
     public static void main(String[] args) {
         SpringApplication.run(ApolloTestApp.class, args);
+        //new SpringApplicationBuilder().environment(new StandardEncryptableEnvironment()).sources(ApolloTestApp.class).run(args);
     }
 
     @Autowired
@@ -41,8 +39,6 @@ public class ApolloTestApp {
     @Value("${jasypt.encryptor.password}")
     private volatile String pwd;
 
-    @Autowired
-    private RefreshScope scope;
 
     @GetMapping("/getConfig")
     public Map<String, Object> getConfig() {
@@ -50,9 +46,9 @@ public class ApolloTestApp {
         ApolloTestApp apolloTestApp = context.getBean(ApolloTestApp.class);
         res.put("input", config.getInput());
         res.put("input1", config.getInput1());
-        res.put("pwd",cg.getProperty("jasypt.encryptor.password","default"));
-        res.put("pwd1",pwd);
-        res.put("pwd2",apolloTestApp.getPwd());
+        res.put("pwd", cg.getProperty("jasypt.encryptor.password", "default"));
+        res.put("pwd1", pwd);
+        res.put("pwd2", apolloTestApp.getPwd());
         return res;
     }
 
@@ -74,8 +70,7 @@ public class ApolloTestApp {
         if (!redisCacheKeysChanged) {
             return;
         }
-        //scope.refreshAll();
-        scope.refresh("testConfig");
+        //scope.refresh("testConfig");
     }
 
     public String getPwd() {
@@ -85,4 +80,5 @@ public class ApolloTestApp {
     public void setPwd(String pwd) {
         this.pwd = pwd;
     }
+
 }
