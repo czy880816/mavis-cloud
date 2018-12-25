@@ -1,9 +1,7 @@
-package com.ctrip.framework.apollo.demo.spring.springBootDemo.config;
+package com.mavis.apollo.demo.spring.springBootDemo.config;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
-import java.util.List;
-import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -12,6 +10,8 @@ import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
+import java.util.List;
+import java.util.Map;
 
 /**
  * You may set up data like the following in Apollo:
